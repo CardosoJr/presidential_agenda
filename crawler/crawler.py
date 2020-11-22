@@ -13,6 +13,7 @@ import os
 from datetime import date, datetime, timedelta
 import pandas as pd 
 import yaml
+import random 
 
 class PresidentialAgendaCrawler:
     def __init__(self, csv_path, base_url):
@@ -34,7 +35,7 @@ class PresidentialAgendaCrawler:
         day_string = day.strftime("%Y-%m-%d")
         print('Dia: '+ day_string)
         self.driver.get(self.base_url + day_string)
-        time.sleep(5)
+        time.sleep(random.randint(1, 6))
         compromissos = self.driver.find_elements_by_class_name("item-compromisso")
         try:
             for compromisso in compromissos:
