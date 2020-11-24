@@ -1,4 +1,4 @@
-# Presidential Agenda
+# Presidential Agenda (on going effort)
 
 This repo contains code to scrap Brazil's president agenda and do some simple analysis. 
 
