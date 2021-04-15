@@ -1,7 +1,8 @@
 from crawler import crawler
 import yaml 
 from datetime import date, datetime, timedelta
-CONFIG_PATH = "crawler\config.yaml"
+from pathlib import Path
+CONFIG_PATH = Path("crawler/config.yaml")
 
 if __name__ == "__main__":
     with open(CONFIG_PATH, 'r') as stream:
