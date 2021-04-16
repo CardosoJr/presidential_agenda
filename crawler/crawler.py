@@ -32,12 +32,14 @@ class PresidentialAgendaCrawler:
             print("Extracting Data", current)
             data = self.scrape(current)
             compromisso.extend(data)
-        print("Saving results\n")
-        df = pd.DataFrame(compromisso, columns = ['data', 'inicio', 'fim', 'titulo', 'local', 'participantes'])
-        if self.csv_path.exists():
-            df.to_csv(self.csv_path, encoding = "utf-8", index = False, mode = 'a', header = False)
-        else:
-            df.to_csv(self.csv_path, encoding = "utf-8", index = False)
+            
+        if len(compromisso) > 0:
+            print("Saving results\n")
+            df = pd.DataFrame(compromisso, columns = ['data', 'inicio', 'fim', 'titulo', 'local', 'participantes'])
+            if self.csv_path.exists():
+                df.to_csv(self.csv_path, encoding = "utf-8", index = False, mode = 'a', header = False)
+            else:
+                df.to_csv(self.csv_path, encoding = "utf-8", index = False)
 
     def scrape(self, day):
         items_agenda = []
@@ -48,7 +50,12 @@ class PresidentialAgendaCrawler:
         try:
             for compromisso in compromissos:
                 inicio = compromisso.find_element_by_xpath(".//time[@class='compromisso-inicio']").text
-                fim = compromisso.find_element_by_xpath(".//time[@class='compromisso-fim']").text
+                fim = ""
+                try:
+                    fim = compromisso.find_element_by_xpath(".//time[@class='compromisso-fim']").text
+                except:
+                    pass
+
                 titulo = ""
                 try:
                     titulo = compromisso.find_element_by_xpath(".//h4[@class='compromisso-titulo']").text.replace(",", " - ")
