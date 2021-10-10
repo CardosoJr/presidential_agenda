@@ -3,6 +3,7 @@ import shutil
 import uuid
 
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 class WebDriverWrapper:
@@ -40,8 +41,10 @@ class WebDriverWrapper:
             'user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36')
 
         # chrome_options.binary_location = os.getcwd() + "/bin/headless-chromium"
+        # self._driver = webdriver.Chrome(chrome_options=chrome_options)
 
-        self._driver = webdriver.Chrome(chrome_options=chrome_options)
+        self._driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+        print("Finished building chrome driver")
 
     def get_url(self, url):
         self._driver.get(url)

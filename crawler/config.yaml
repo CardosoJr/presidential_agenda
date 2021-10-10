@@ -1,4 +1,8 @@
-begin: 01-04-2021
-end: 01-05-2021
+begin: 01-05-2021
+end: 01-10-2021
 data: data.csv
 url: https://www.gov.br/planalto/pt-br/acompanhe-o-planalto/agenda-do-presidente-da-republica/
+
+sp: https://www.saopaulo.sp.gov.br/agenda-governador/
+rj: http://www.rj.gov.br/Agenda.aspx
+
